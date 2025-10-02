@@ -145,9 +145,9 @@ Step 5: Create your cluster and nodes
 
 To set up our first Kubernetes cluster we will use the below command in which we have to provide the name of our cluster, the region in which it will be created, and the size of our Instance.
 
-`eksctl create cluster --name my-demo-cluster \
-   --region us-east-1 \
---node-type t2.small \`
+`eksctl create cluster --name my-demo-cluster \`  
+   `--region us-east-1 \`  
+`--node-type t2.small \`
 
 The execution of this command will take at least 20 minutes and as you might know, eksctl utilizes Cloudformation at the backend to create the cluster so we should see a new template in Cloudformation.
 
