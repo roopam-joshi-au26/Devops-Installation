@@ -34,6 +34,7 @@ Agenda:
 Step 1: Setup Bootstrap Image to create Cluster
 
 In this step, we will first set up a Bootstrap Image using AWS EC2 Instance.
+
 Log in to the Amazon management console, open EC2 Dashboard, click on the Launch Instance drop-down list, and click on Launch Instance as shown below:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-1.png)
