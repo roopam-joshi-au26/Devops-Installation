@@ -1,7 +1,7 @@
 What is Amazon EKS?
 Amazon Elastic Kubernetes Service (Amazon EKS) is a managed service that you can use to run Kubernetes on AWS without needing to install, operate, and maintain your own Kubernetes control plane or nodes. Kubernetes is an open-source system for automating the deployment, scaling, and management of containerized applications.
 How does Amazon EKS work?
- ![alt text](Kubernetes Cluster Setup on Amazon (EKS)/image.png)
+ ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-1.png)
 1.	Create an Amazon EKS cluster in the AWS Management Console or with the AWS CLI or one of the AWS SDKs.
 2.	Launch managed or self-managed Amazon EC2 nodes, or deploy your workloads to AWS Fargate.
 3.	When your cluster is ready, you can configure your favorite Kubernetes tools, such as kubectl, to communicate with your cluster.
