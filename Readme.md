@@ -8,7 +8,7 @@ How does Amazon EKS work?
  
 1.	Create an Amazon EKS cluster in the AWS Management Console or with the AWS CLI or one of the AWS SDKs.
 2.	Launch managed or self-managed Amazon EC2 nodes, or deploy your workloads to AWS Fargate.
-3.	When your cluster is ready, you can configure your favorite Kubernetes tools, such as kubectl, to communicate with your cluster.
+3.	When your cluster is ready, you can configure your favorite Kubernetes tools, such as `kubectl`, to communicate with your cluster.
 4.	Deploy and manage workloads on your Amazon EKS cluster the same way that you would with any other Kubernetes environment. You can also view information about your workloads using the AWS Management Console.
 
 Source: https://docs.aws.amazon.com/
@@ -74,6 +74,7 @@ Open any SSH Client in your local machine, take the public IP of your EC2 Instan
 Once we are logged into our EC2 machine we will check the version AWS CLI:
 
 `[root@ip-172-31-92-254 ~]# aws --version`
+
 `aws-cli/1.18.147 Python/2.7.18 Linux/5.10.178-162.673.amzn2.x86_64 botocore/1.18.6`
 
 As per AWS Documentation AWS CLI version should be 2.11.3 or Later.
