@@ -191,9 +191,9 @@ The above command uses kubectl to create the deployment with the name demo-nginx
 The above output also verifies the successful creation of our deployment by using the command “kubectl get deployments”.  
 We can also verify the creation of two replicaset in the background:
 
-`[root@ip-172-31-92-254 ~]# kubectl get replicaset`
-`NAME                    DESIRED   CURRENT   READY   AGE
-demo-nginx-699bd94686   2         2         2       3m7s`
+`[root@ip-172-31-92-254 ~]# kubectl get replicaset`  
+`NAME                    DESIRED   CURRENT   READY   AGE`  
+`demo-nginx-699bd94686   2         2         2       3m7s`
 
 Also, we can check our newly created two pods :
 
