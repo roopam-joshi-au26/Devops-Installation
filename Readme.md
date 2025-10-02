@@ -71,9 +71,18 @@ Open any SSH Client in your local machine, take the public IP of your EC2 Instan
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-9.png)
 
+## Commands
+
+| Command | Description | Usage Example |
+|---|---|---|
+| `start` | Starts the service | `./myapp start` |
+| `stop` | Stops the service | `./myapp stop` |
+| `status` | Shows current status | `./myapp status` |
+
+
 Once we are logged into our EC2 machine we will check the version AWS CLI:
 
-## Commands
+
 [root@ip-172-31-92-254 ~]# aws --version
 aws-cli/1.18.147 Python/2.7.18 Linux/5.10.178-162.673.amzn2.x86_64 botocore/1.18.6
 
