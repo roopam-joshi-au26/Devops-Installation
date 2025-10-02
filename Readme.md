@@ -40,17 +40,14 @@ Log in to the Amazon management console, open EC2 Dashboard, click on the Launch
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-1.png)
  
 Once the Launch an instance window opens, provide the name of your EC2 Instance:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-2.png)
  
 For this demo, we will select Amazon Linux 2 AMI which is free tier eligible.
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-3.png)
  
 Choose an Instance Type. Here you can select the type of machine, number of vCPUs, and memory that you want to have. Select t2.micro which is free-tier eligible.
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-4.png)
  
@@ -59,7 +56,6 @@ For this demo, we will select an already existing key pair. You can create new k
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-5.png)
  
 Now under Network Settings, Choose the default VPC with Auto-assign public IP in enable mode. We will select an existing security group that we have been using in our DevOps projects.
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-6.png)
  
@@ -72,7 +68,6 @@ On the next screen you can see a success message after the successful creation o
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-8.png)
 
 Open any SSH Client in your local machine, take the public IP of your EC2 Instance, and add the pem key and you will be able to access your EC2 machine in my case I am using MobaXterm on Windows:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-9.png)
 
@@ -95,12 +90,10 @@ c. Move kubectl onto /usr/local/bin
 d. Test that your kubectl installation was successful
 Let’s first Download the kubectl with the below command:
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-10.png)
 
 After it is downloaded let’s grant execution permissions to it and move kubectl to /usr/local/bin directory and also test the kubectl installation.
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-11.png)
 
@@ -116,39 +109,32 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 Output:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-12.png)
  
 Step 4: Create an IAM Role and attach it to the EC2 instance
 IAM user should have access to IAM, EC2, and CloudFormation
 Go to your AWS console and search for IAM. Under Access management, Select Roles and then click on Create role:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-13.png)
  
 On the next screen, we will select the EC2 service and click on Next:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-14.png)
  
 As mentioned earlier we need to provide the IAM user access to EC2, Cloudformation, and IAM, however, for the sake of this demo, we will provide full Administrative Access to the User(which is recommended in real-world scenarios):
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-15.png)
  
 On the next page, provide the name of your role and finally click on Create Role to proceed:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-16.png)
  
 After creating the role we need to add this role to our Bootstrap EC2 Instance:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-17.png)
  
 Select the role and click on Update IAM role as shown below:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-18.png)
  
@@ -158,37 +144,30 @@ eksctl create cluster --name my-demo-cluster \
    --region us-east-1 \
 --node-type t2.small \
 The execution of this command will take at least 20 minutes and as you might know, eksctl utilizes Cloudformation at the backend to create the cluster so we should see a new template in Cloudformation.
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-19.png)
  
 Output:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-20.png)
  
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-21.png)
  
 If we check our EC2 dashboard we should see two new nodes as part of our cluster:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-22.png)
  
 Also from the CLI, we can verify the creation of two nodes using the “kubectl get nodes” command:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-23.png)
  
 To display what all resources we have in our Kubernetes cluster we can issue the command “ kubectl get all” :
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-24.png)
  
 Step 6: Create a Pod using Kubectl to Validate the Cluster
 Let’s create a Pod using the kubectl command “kubectl run webapp — image=httpd”, where webapp is the name of our first pod and httpd is the image name.
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-25.png)
  
@@ -204,7 +183,6 @@ We can also verify the creation of two replicaset in the background:
 NAME                    DESIRED   CURRENT   READY   AGE
 demo-nginx-699bd94686   2         2         2       3m7s
 Also, we can check our newly created two pods :
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-26.png)
  
@@ -213,12 +191,10 @@ kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer
 [root@ip-172-31-92-254 ~]# kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer
 service/demo-nginx exposed
 Finally, let’s verify all our resources created so far in our cluster:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-27.png)
  
 We can verify the Nginx default page from our browser also:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-28.png)
  
