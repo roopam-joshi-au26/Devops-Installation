@@ -10,7 +10,9 @@ How does Amazon EKS work?
 2.	Launch managed or self-managed Amazon EC2 nodes, or deploy your workloads to AWS Fargate.
 3.	When your cluster is ready, you can configure your favorite Kubernetes tools, such as kubectl, to communicate with your cluster.
 4.	Deploy and manage workloads on your Amazon EKS cluster the same way that you would with any other Kubernetes environment. You can also view information about your workloads using the AWS Management Console.
+
 Source: https://docs.aws.amazon.com/
+
 Agenda:
 •	Setup an EC2 Instance to create a cluster
 •	Setup kubectl
