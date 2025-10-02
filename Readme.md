@@ -78,11 +78,14 @@ Once we are logged into our EC2 machine we will check the version AWS CLI:
 `aws-cli/1.18.147 Python/2.7.18 Linux/5.10.178-162.673.amzn2.x86_64 botocore/1.18.6`
 
 As per AWS Documentation AWS CLI version should be 2.11.3 or Later.
-AWS CLI — A command line tool for working with AWS services, including Amazon EKS. This guide requires that you use the version 2.11.3 or later or 1.27.93 or later
+
+AWS CLI — A command line tool for working with AWS services, including Amazon EKS. This guide requires that you use the version `2.11.3` or later or `1.27.93` or later
 Let’s first update the AWS CLI on our EC2 machine. The command for that is given below:
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+`curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
-sudo ./aws/install
+sudo ./aws/install`
+
 After installation, let’s check the AWS CLI version again and it should look something like this:
 [root@ip-172-31-92-254 ~]# aws --version
 aws-cli/2.11.21 Python/3.11.3 Linux/5.10.178-162.673.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
