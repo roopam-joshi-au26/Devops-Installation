@@ -72,8 +72,11 @@ Open any SSH Client in your local machine, take the public IP of your EC2 Instan
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-9.png)
 
 Once we are logged into our EC2 machine we will check the version AWS CLI:
+
+## Commands
 [root@ip-172-31-92-254 ~]# aws --version
 aws-cli/1.18.147 Python/2.7.18 Linux/5.10.178-162.673.amzn2.x86_64 botocore/1.18.6
+
 As per AWS Documentation AWS CLI version should be 2.11.3 or Later.
 AWS CLI — A command line tool for working with AWS services, including Amazon EKS. This guide requires that you use the version 2.11.3 or later or 1.27.93 or later
 Let’s first update the AWS CLI on our EC2 machine. The command for that is given below:
