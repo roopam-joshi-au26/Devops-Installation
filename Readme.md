@@ -14,13 +14,21 @@ How does Amazon EKS work?
 Source: https://docs.aws.amazon.com/
 
 Agenda:
+
 •	Setup an EC2 Instance to create a cluster
+
 •	Setup kubectl
+
 •	Setup eksctl
+
 •	Create an IAM Role and attach it to the EC2 instance
+
 •	Create your cluster and nodes
+
 •	Create a Pod using Kubectl to Validate the Cluster
+
 •	Deploying Nginx Container
+
 •	Delete the EKS cluster
 
 Step 1: Setup Bootstrap Image to create Cluster
