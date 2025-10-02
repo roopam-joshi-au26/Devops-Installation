@@ -61,7 +61,7 @@ Now under Network Settings, Choose the default VPC with Auto-assign public IP in
  
 Rest of the settings we will keep them at default and go ahead and click on Launch Instance
 
- ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)image-7.png)
+ ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-7.png)
  
 On the next screen you can see a success message after the successful creation of the EC2 instance, click on Connect to instance button:
 
