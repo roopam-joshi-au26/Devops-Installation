@@ -2,7 +2,7 @@
 
 Amazon Elastic Kubernetes Service (Amazon EKS) is a managed service that you can use to run Kubernetes on AWS without needing to install, operate, and maintain your own Kubernetes control plane or nodes. Kubernetes is an open-source system for automating the deployment, scaling, and management of containerized applications.
 
-How does Amazon EKS work?
+**How does Amazon EKS work?**
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image.png)
  
@@ -13,7 +13,7 @@ How does Amazon EKS work?
 
 Source: https://docs.aws.amazon.com/
 
-Agenda:
+**Agenda:**
 
 •	Setup an EC2 Instance to create a cluster  
 •	Setup kubectl  
@@ -24,7 +24,7 @@ Agenda:
 •	Deploying Nginx Container  
 •	Delete the EKS cluster
 
-Step 1: Setup Bootstrap Image to create Cluster
+**Step 1: Setup Bootstrap Image to create Cluster**
 
 In this step, we will first set up a Bootstrap Image using AWS EC2 Instance.
 
@@ -40,7 +40,7 @@ For this demo, we will select Amazon Linux 2 AMI which is free tier eligible.
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-3.png)
  
-Choose an Instance Type. Here you can select the type of machine, number of vCPUs, and memory that you want to have. Select t2.micro which is free-tier eligible.
+Choose an Instance Type. Here you can select the type of machine, number of vCPUs, and memory that you want to have. Select **t2.micro** which is free-tier eligible.
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-4.png)
  
@@ -48,15 +48,15 @@ For this demo, we will select an already existing key pair. You can create new k
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-5.png)
  
-Now under Network Settings, Choose the default VPC with Auto-assign public IP in enable mode. We will select an existing security group that we have been using in our DevOps projects.
+Now under **Network Settings**, Choose the default VPC with Auto-assign public IP in enable mode. We will select an existing security group that we have been using in our DevOps projects.
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-6.png)
  
-Rest of the settings we will keep them at default and go ahead and click on Launch Instance
+Rest of the settings we will keep them at default and go ahead and click on **Launch Instance**
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-7.png)
  
-On the next screen you can see a success message after the successful creation of the EC2 instance, click on Connect to instance button:
+On the next screen you can see a success message after the successful creation of the EC2 instance, click on **Connect to instance** button:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-8.png)
 
@@ -71,7 +71,7 @@ Once we are logged into our EC2 machine we will check the version AWS CLI:
 
 As per AWS Documentation AWS CLI version should be 2.11.3 or Later.
 
-AWS CLI — A command line tool for working with AWS services, including Amazon EKS. This guide requires that you use the version `2.11.3` or later or `1.27.93` or later
+**AWS CLI —** A command line tool for working with AWS services, including Amazon EKS. This guide requires that you use the version `2.11.3` or later or `1.27.93` or later
 
 Let’s first update the AWS CLI on our EC2 machine. The command for that is given below:
 
@@ -84,7 +84,7 @@ After installation, let’s check the AWS CLI version again and it should look s
 `[root@ip-172-31-92-254 ~]# aws --version`  
 `aws-cli/2.11.21 Python/3.11.3 Linux/5.10.178-162.673.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off`  
 
-Step 2: Setup kubectl
+**Step 2: Setup kubectl**
 
 a. Download kubectl version 1.26  
 b. Grant execution permissions to kubectl executable  
@@ -100,7 +100,7 @@ After it is downloaded let’s grant execution permissions to it and move kubect
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-11.png)
 
-Step 3: Setup eksctl
+**Step 3: Setup eksctl**
 
 a. Download and extract the latest release  
 b. Move the extracted binary to /usr/local/bin  
@@ -114,10 +114,10 @@ Output:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-12.png)
  
-Step 4: Create an IAM Role and attach it to the EC2 instance
+**Step 4: Create an IAM Role and attach it to the EC2 instance**
 
 IAM user should have access to IAM, EC2, and CloudFormation
-Go to your AWS console and search for IAM. Under Access management, Select Roles and then click on Create role:
+Go to your AWS console and search for IAM. Under **Access management**, Select **Roles** and then click on **Create role**:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-13.png)
  
@@ -129,7 +129,7 @@ As mentioned earlier we need to provide the IAM user access to EC2, Cloudformati
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-15.png)
  
-On the next page, provide the name of your role and finally click on Create Role to proceed:
+On the next page, provide the name of your role and finally click on **Create Role** to proceed:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-16.png)
  
@@ -137,11 +137,11 @@ After creating the role we need to add this role to our Bootstrap EC2 Instance:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-17.png)
  
-Select the role and click on Update IAM role as shown below:
+Select the role and click on **Update IAM role** as shown below:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-18.png)
  
-Step 5: Create your cluster and nodes
+**Step 5: Create your cluster and nodes**
 
 To set up our first Kubernetes cluster we will use the below command in which we have to provide the name of our cluster, the region in which it will be created, and the size of our Instance.
 
@@ -164,31 +164,31 @@ If we check our EC2 dashboard we should see two new nodes as part of our cluster
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-22.png)
  
-Also from the CLI, we can verify the creation of two nodes using the “kubectl get nodes” command:
+Also from the CLI, we can verify the creation of two nodes using the **“kubectl get nodes”** command:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-23.png)
  
-To display what all resources we have in our Kubernetes cluster we can issue the command “ kubectl get all” :
+To display what all resources we have in our Kubernetes cluster we can issue the command **“kubectl get all”** :
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-24.png)
  
-Step 6: Create a Pod using Kubectl to Validate the Cluster
+**Step 6: Create a Pod using Kubectl to Validate the Cluster**
 
-Let’s create a Pod using the kubectl command “kubectl run webapp — image=httpd”, where webapp is the name of our first pod and httpd is the image name.
+Let’s create a Pod using the kubectl command **“kubectl run webapp — image=httpd”**, where webapp is the name of our first pod and httpd is the image name.
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-25.png)
  
-Step 7: Deploying Nginx Container
+**Step 7: Deploying Nginx Container**
 
 Let’s now create a deployment that will help us to create pods. The command for that would be:
 
 `kubectl create deployment  demo-nginx --image=nginx --replicas=2 --port=80`  
-The above command uses kubectl to create the deployment with the name demo-nginx and pulls image nginx from the DockerHub.Also, it creates two replicas for high availability and exposes port 8080.
+The above command uses kubectl to create the **deployment** with the name **demo-nginx** and pulls image **nginx** from the DockerHub.Also, it creates two **replicas** for high availability and exposes port 8080.
 
 `[root@ip-172-31-92-254 ~]# kubectl create deployment  demo-nginx --image=nginx --replicas=2 --port=80`  
 `deployment.apps/demo-nginx created`
 
-The above output also verifies the successful creation of our deployment by using the command “kubectl get deployments”.  
+The above output also verifies the successful creation of our deployment by using the command **“kubectl get deployments”**.  
 We can also verify the creation of two replicaset in the background:
 
 `[root@ip-172-31-92-254 ~]# kubectl get replicaset`  
@@ -214,7 +214,7 @@ We can verify the Nginx default page from our browser also:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-28.png)
  
-Step 8: Delete the EKS cluster
+**Step 8: Delete the EKS cluster**
 
 When you’re done using an Amazon EKS cluster, you should delete the resources associated with it so that you don’t incur any unnecessary costs.
 
@@ -226,6 +226,6 @@ Output:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-29.png)
  
-Conclusion
+## Conclusion
 In this blog, we learned how to set up a Kubernetes cluster on an EC2 machine using kubectl and eksctl. We also learned how to delete all the resources in the cluster in one go.
 
