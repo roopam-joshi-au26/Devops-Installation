@@ -32,6 +32,7 @@ Agenda:
 •	Delete the EKS cluster
 
 Step 1: Setup Bootstrap Image to create Cluster
+
 In this step, we will first set up a Bootstrap Image using AWS EC2 Instance.
 Log in to the Amazon management console, open EC2 Dashboard, click on the Launch Instance drop-down list, and click on Launch Instance as shown below:
 
