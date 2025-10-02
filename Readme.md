@@ -90,7 +90,8 @@ b. Grant execution permissions to kubectl executable
 c. Move kubectl onto /usr/local/bin  
 d. Test that your kubectl installation was successful  
 Let’s first Download the kubectl with the below command:
-curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
+
+`curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl`  
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-10.png)
 
@@ -99,21 +100,21 @@ After it is downloaded let’s grant execution permissions to it and move kubect
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-11.png)
 
 Step 3: Setup eksctl
-a. Download and extract the latest release
-b. Move the extracted binary to /usr/local/bin
-c. Test that your eksclt installation was successful
-Get Subhasmitadas’s stories in your inbox
-Join Medium for free to get updates from this writer.
-Subscribe
-Let’s first download eksctl and move to /usr/local/bin directory and check its version with the below commands:
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/local/bin
-eksctl version
+
+a. Download and extract the latest release  
+b. Move the extracted binary to /usr/local/bin  
+c. Test that your eksclt installation was successful  
+
+Let’s first download eksctl and move to /usr/local/bin directory and check its version with the below commands:  
+`curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp`  
+`sudo mv /tmp/eksctl /usr/local/bin`  
+`eksctl version`  
 Output:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-12.png)
  
 Step 4: Create an IAM Role and attach it to the EC2 instance
+
 IAM user should have access to IAM, EC2, and CloudFormation
 Go to your AWS console and search for IAM. Under Access management, Select Roles and then click on Create role:
 
@@ -140,10 +141,13 @@ Select the role and click on Update IAM role as shown below:
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-18.png)
  
 Step 5: Create your cluster and nodes
+
 To set up our first Kubernetes cluster we will use the below command in which we have to provide the name of our cluster, the region in which it will be created, and the size of our Instance.
-eksctl create cluster --name my-demo-cluster \
+
+`eksctl create cluster --name my-demo-cluster \
    --region us-east-1 \
---node-type t2.small \
+--node-type t2.small \`
+
 The execution of this command will take at least 20 minutes and as you might know, eksctl utilizes Cloudformation at the backend to create the cluster so we should see a new template in Cloudformation.
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-19.png)
@@ -168,29 +172,39 @@ To display what all resources we have in our Kubernetes cluster we can issue the
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-24.png)
  
 Step 6: Create a Pod using Kubectl to Validate the Cluster
+
 Let’s create a Pod using the kubectl command “kubectl run webapp — image=httpd”, where webapp is the name of our first pod and httpd is the image name.
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-25.png)
  
 Step 7: Deploying Nginx Container
+
 Let’s now create a deployment that will help us to create pods. The command for that would be:
-kubectl create deployment  demo-nginx --image=nginx --replicas=2 --port=80
+
+`kubectl create deployment  demo-nginx --image=nginx --replicas=2 --port=80`  
 The above command uses kubectl to create the deployment with the name demo-nginx and pulls image nginx from the DockerHub.Also, it creates two replicas for high availability and exposes port 8080.
-[root@ip-172-31-92-254 ~]# kubectl create deployment  demo-nginx --image=nginx --replicas=2 --port=80
-deployment.apps/demo-nginx created
-The above output also verifies the successful creation of our deployment by using the command “kubectl get deployments”.
+
+`[root@ip-172-31-92-254 ~]# kubectl create deployment  demo-nginx --image=nginx --replicas=2 --port=80`  
+`deployment.apps/demo-nginx created`
+
+The above output also verifies the successful creation of our deployment by using the command “kubectl get deployments”.  
 We can also verify the creation of two replicaset in the background:
-[root@ip-172-31-92-254 ~]# kubectl get replicaset
-NAME                    DESIRED   CURRENT   READY   AGE
-demo-nginx-699bd94686   2         2         2       3m7s
+
+`[root@ip-172-31-92-254 ~]# kubectl get replicaset`
+`NAME                    DESIRED   CURRENT   READY   AGE
+demo-nginx-699bd94686   2         2         2       3m7s`
+
 Also, we can check our newly created two pods :
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-26.png)
  
 Let’s now expose this application to the external network by using the command:
-kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer
-[root@ip-172-31-92-254 ~]# kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer
-service/demo-nginx exposed
+
+`kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer`
+
+`[root@ip-172-31-92-254 ~]# kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer`
+`service/demo-nginx exposed`
+
 Finally, let’s verify all our resources created so far in our cluster:
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-27.png)
@@ -200,11 +214,14 @@ We can verify the Nginx default page from our browser also:
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-28.png)
  
 Step 8: Delete the EKS cluster
+
 When you’re done using an Amazon EKS cluster, you should delete the resources associated with it so that you don’t incur any unnecessary costs.
+
 Delete the cluster and its associated nodes with the following command,
-eksctl delete cluster my-demo-cluster --region us-east-1
+
+`eksctl delete cluster my-demo-cluster --region us-east-1`
+
 Output:
-Press enter or click to view image in full size
 
  ![alt text](Kubernetes%20Cluster%20Setup%20on%20Amazon%20(EKS)/image-29.png)
  
