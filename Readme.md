@@ -203,7 +203,7 @@ Let’s now expose this application to the external network by using the command
 
 `kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer`
 
-`[root@ip-172-31-92-254 ~]# kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer`
+`[root@ip-172-31-92-254 ~]# kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer`  
 `service/demo-nginx exposed`
 
 Finally, let’s verify all our resources created so far in our cluster:
