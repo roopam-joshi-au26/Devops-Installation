@@ -15,20 +15,13 @@ Source: https://docs.aws.amazon.com/
 
 Agenda:
 
-•	Setup an EC2 Instance to create a cluster
-
-•	Setup kubectl
-
-•	Setup eksctl
-
-•	Create an IAM Role and attach it to the EC2 instance
-
-•	Create your cluster and nodes
-
-•	Create a Pod using Kubectl to Validate the Cluster
-
-•	Deploying Nginx Container
-
+•	Setup an EC2 Instance to create a cluster  
+•	Setup kubectl  
+•	Setup eksctl  
+•	Create an IAM Role and attach it to the EC2 instance  
+•	Create your cluster and nodes  
+•	Create a Pod using Kubectl to Validate the Cluster  
+•	Deploying Nginx Container  
 •	Delete the EKS cluster
 
 Step 1: Setup Bootstrap Image to create Cluster
@@ -73,8 +66,7 @@ Open any SSH Client in your local machine, take the public IP of your EC2 Instan
 
 Once we are logged into our EC2 machine we will check the version AWS CLI:
 
-`[root@ip-172-31-92-254 ~]# aws --version`
-
+`[root@ip-172-31-92-254 ~]# aws --version`  
 `aws-cli/1.18.147 Python/2.7.18 Linux/5.10.178-162.673.amzn2.x86_64 botocore/1.18.6`
 
 As per AWS Documentation AWS CLI version should be 2.11.3 or Later.
@@ -87,13 +79,16 @@ Let’s first update the AWS CLI on our EC2 machine. The command for that is giv
 `sudo ./aws/install`  
 
 After installation, let’s check the AWS CLI version again and it should look something like this:
-[root@ip-172-31-92-254 ~]# aws --version
-aws-cli/2.11.21 Python/3.11.3 Linux/5.10.178-162.673.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
+
+`[root@ip-172-31-92-254 ~]# aws --version`  
+`aws-cli/2.11.21 Python/3.11.3 Linux/5.10.178-162.673.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off`  
+
 Step 2: Setup kubectl
-a. Download kubectl version 1.26
-b. Grant execution permissions to kubectl executable
-c. Move kubectl onto /usr/local/bin
-d. Test that your kubectl installation was successful
+
+a. Download kubectl version 1.26  
+b. Grant execution permissions to kubectl executable  
+c. Move kubectl onto /usr/local/bin  
+d. Test that your kubectl installation was successful  
 Let’s first Download the kubectl with the below command:
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
 
